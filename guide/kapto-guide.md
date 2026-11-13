@@ -272,7 +272,8 @@ and press **Enter**. Kapto asks the site which qualities the video has, and how 
 1. **The link** of the video page.
 2. **The name.** Kapto names the file after the video's title.
 3. **Quality.** One button for each quality this video really has, each with its size. **Best** is the highest
-   there is; **Audio only** saves just the sound as an MP3. The sizes are estimates.
+   there is; **Audio only** saves just the sound, in its original quality unless you choose MP3, Opus, M4A or
+   FLAC under **More options** or in **Video and audio** settings. The sizes are estimates.
 4. **Part of the video**: **Whole video**, or **Only some parts** to download just the minutes you want
    (section 9). It appears once Kapto knows how long the video is.
 5. **Save to**: the category (Video) and its folder.
@@ -591,6 +592,34 @@ Kapto stops sharing it, unless you asked for more in **Settings → Torrents** (
    the speed in each direction, and how Kapto found it (a tracker, DHT or peer exchange).
 2. A summary: how many are connected, how many have the whole thing, and how much has been received.
 
+### What others can see
+
+A torrent is shared in the open. While it downloads or shares:
+
+- **Every peer sees your internet address**, and which torrent you are sharing. So does every tracker the
+  torrent names. This is how BitTorrent works, in every program.
+- **Your internet provider** can see that you use BitTorrent. Encryption (on at first, in **Network**) hides
+  what is inside the traffic from simple shaping. It does not hide your address, and it is not anonymity.
+- **Anonymous mode** (in **Privacy**) stops Kapto telling trackers and peers which program and version it is,
+  and your computer's address on the home network. Your internet address is still seen.
+- **A proxy or a VPN** is the only thing that hides your address. With a proxy set in **Network**, Kapto sends
+  all torrent traffic through it, including the lookups of tracker names, and turns off everything that would
+  go around it: finding peers on the home network, asking the router to open a port, and connections that
+  others start to you. Through a proxy that cannot carry UDP (anything but SOCKS5), the DHT and uTP are off
+  too. Tying torrents to your VPN in **Network** stops them altogether when the VPN drops.
+- **The people on your own network** can see your computer looking for peers there (local peer discovery).
+  It is off behind a proxy.
+
+Kapto also protects you from the torrent itself:
+
+- **File names.** A torrent names its own files. Kapto refuses a torrent, before anything is saved, when a
+  name would leave its folder (`..`), is a name Windows keeps for a device (`CON`, `NUL`, `COM1`…), ends in a
+  dot or a space, or when two names differ only in capitals (on Windows and macOS they would be one file). The
+  row says which name it was.
+- **Trackers on your own network.** A torrent can name a "tracker" on your computer or on a device at home,
+  such as the router. Kapto leaves those out. Turn on **Allow trackers on this network** in **Privacy** if you
+  run your own tracker at home.
+
 ## 24. Make your own torrent
 
 Choose **⋯ → Create a torrent…** to share a file or a folder of your own.
@@ -618,8 +647,12 @@ search for anything or suggest feeds; you paste the feed addresses.
 2. **Your feeds.**
 3. Type a feed address (it starts with `http://` or `https://`) and click **Add**. **Remove** removes the
    selected feed.
-4. **Test feed** fetches the selected feed now and shows what your rules would take, without adding anything.
-5. **What this feed has right now**: a tick marks what your rules would take. The line below sums it up.
+   A new feed takes only what appears in it after you add it. To take some of what it lists already, set
+   **also take the last** before clicking **Add**.
+4. **Test feed** fetches the selected feed now and shows what your rules would do, without adding anything.
+5. **What this feed has right now**: a tick marks what a rule matches; the **Rule** column says which rule, and
+   why a check would not take it now (listed before the feed or rule, the episode is already taken, it waits
+   for a better copy). The line below sums it up.
 
 Then make the rules on the **Rules** tab:
 
@@ -629,8 +662,13 @@ Then make the rules on the **Rules** tab:
    Exclude always wins. **Save to** is the folder for what the rule takes. Untick **On** to pause a rule.
    Include and Exclude are patterns: `1080p` matches any name containing 1080p, `cam|sample` matches either word,
    and `ubuntu-.*-desktop` matches anything between the two parts.
+   **Episodes** limits a rule to some episodes: `1x5-8` is season 1, episodes 5 to 8; `2x1-` is season 2 from
+   episode 1 on; `3` is all of season 3. Leave it empty for any. Kapto reads the episode from the name
+   (`S01E05`, `1x05`, `S01E05-E07`) and takes each episode **once**.
+   **Quality order**, such as `1080p, 720p`: a copy that is not your first choice waits **Wait (min)** minutes
+   for a better one, then the best copy seen is taken.
 2. **Add rule** adds an empty rule to fill in. **Remove rule** removes the selected one.
-3. **Save** keeps your feeds and rules.
+3. **Save** keeps your feeds and rules. A new rule takes only what appears after it is saved.
 
 Automatic checking with no rules takes nothing; Kapto says so. Each item is added only once.
 
@@ -735,6 +773,8 @@ How torrents connect (the port, encryption, DHT, a proxy, tying them to your VPN
 
 1. **Privacy.**
 2. **Anonymous mode** shares fewer details with trackers and peers. It is slower, and it is not a VPN.
+   **Allow trackers on this network** keeps trackers a torrent names on your computer or home network; they
+   are left out at first (section 23, "What others can see").
 3. **Verify TLS certificates** should stay on.
 4. **Mark downloads as coming from the internet**: Windows then still warns before running or opening them, as
    it does for files your browser downloads. On at first.
@@ -753,7 +793,7 @@ The torrent port, encryption, peer finding and the proxy moved to the **Network*
 3. **Bridge port**: the port the extension looks on. Leave it as it is unless another program needs that port.
 4. **Pairing token**: the extension and the app agree on this by themselves. It stops other web pages from
    adding downloads.
-5. **Let my phone send downloads**: section 51.
+5. The phone page is on its own page now, **Settings → Remote**: section 51.
 6. **Cookies from browser**: for sites that need you signed in. Kapto can read that browser's cookies itself when
    the extension hasn't sent them. **Off** at first; used only on sites that need a login. **Cookies file** does
    the same from a `cookies.txt` file you choose. Chrome and Edge keep their cookies locked from other programs,
@@ -765,7 +805,8 @@ The torrent port, encryption, peer finding and the proxy moved to the **Network*
 ![Settings, System: the theme, text size, language, compact list, the tray, starting with Windows and notifications](images/settings-system.png)
 
 1. **System.**
-2. **Light**, **Dark** or **Match Windows**.
+2. **Light**, **Dark**, **High contrast** (white and yellow on black, every text easy to read) or **Match
+   Windows**, which also follows Windows' own contrast themes.
 3. **Text size**: **Small**, **Default** or **Large**.
 4. **Language**: section 60.
 5. **Compact list**: shorter rows, so more downloads fit.
@@ -795,7 +836,7 @@ shows the best quality there is, and hides when the video is full screen.
 ![The Download button on the top edge of a video player, with its menu of qualities and sizes open](images/video-button.png)
 
 1. Click **Download**.
-2. Choose a quality. Each one has its size; **Audio only (MP3)** saves just the sound. The download goes to
+2. Choose a quality. Each one has its size; **Audio only** saves just the sound. The download goes to
    Kapto.
 
 You can also right-click a video and choose **Download this video/audio**, right-click a link and choose
@@ -1111,30 +1152,60 @@ imports too.
 
 Found something on your phone? Send it to the PC.
 
-1. Open **Settings → Browser** and turn on **Let my phone send downloads** (section 32). Click **Save**.
-2. A QR code appears under it. Point your phone's camera at it and open the link.
+1. Open **Settings → Remote** and turn on **Let my phone send downloads**. Click **Save**.
+2. Click **Pair a phone**. A QR code and a six-digit code appear. Point your phone's camera at the QR code and
+   open the link: the phone pairs by itself. (Or open the address on the phone and type the code.)
+   The first time, the phone's browser warns that the connection's certificate isn't from an authority it knows:
+   Kapto made it itself. Check that the fingerprint the browser shows matches **Certificate fingerprint** in
+   Kapto's Settings, then continue to the page.
 3. Bookmark the page that opens, or add it to your home screen.
-4. Paste or share a link into that page and send it. It starts in Kapto on the PC, and the page shows what Kapto
-   is downloading.
+4. Paste or share a link into that page and send it. It starts in Kapto on the PC. For a video, choose the
+   quality first; **Qualities of this video** asks the site which ones it has.
 
-It works on your home network only: the phone and the PC must be on the same Wi-Fi or router. The page needs the
-secret code in its link, so nobody else on the network can use it. **New code** makes a new link; the old one
-stops working. While the page is on, the status strip says **Phone page: on**.
+From the page you can also send a `.torrent` file, see every download with the free space left, pause, resume or
+remove a download, and **Start the queue**.
+
+It works on your home network only: the phone and the PC must be on the same Wi-Fi or router, and everything
+between them is encrypted. The pairing code
+works once, for five minutes; each phone then has a key of its own, kept in that phone's browser and never in the
+page's address. Under **Pair a phone** Kapto lists the paired phones: **Remove phone** cuts that phone off at once,
+and the others keep working. A phone that is removed (or a phone that forgot its key) simply pairs again. While the
+page is on, the status strip says **Phone page: on**.
 
 The first time, Windows may ask whether Kapto may use the network: allow it on **Private networks**.
 
 ## 52. Commands in a terminal
 
 Kapto comes with a command-line program, `kapto-cli`, for scripts and for people who like a terminal. On Windows it
-is in Kapto's folder: `"C:\Program Files\Kapto\kapto-cli.exe"`. Kapto must be running.
+is in Kapto's folder: `"C:\Program Files\Kapto\kapto-cli.exe"`. On Linux, the Kapto program itself takes the same
+commands. `add` starts Kapto if it isn't running; `get` doesn't need Kapto at all; the rest need it running.
 
 | Command | What it does |
 |---|---|
-| `kapto-cli add URL [URL …]` | Add downloads. Patterns such as `img[001-100].jpg` work. Add `--dir FOLDER` to choose the folder, `--hold` to add without starting, `--queue NAME` to put them in a queue |
+| `kapto-cli add URL [URL …]` | Add downloads. Patterns such as `img[001-100].jpg` work. Add `--dir FOLDER` to choose the folder, `--name FILE` to choose the file name (one link), `--hold` to add without starting, `--queue NAME` to put them in a queue |
 | `kapto-cli status` | List the downloads with their ids. `--active` shows only running and waiting ones |
 | `kapto-cli pause ID …` | Pause downloads. `all` pauses everything |
 | `kapto-cli resume ID …` | Resume downloads. `all` resumes everything |
 | `kapto-cli stop ID …` | Stop downloads |
+| `kapto-cli remove ID …` | Remove downloads from the list. `--delete-files` also deletes what they downloaded |
+| `kapto-cli start` | Start a queue: everything waiting or held in it. `--queue NAME` for one of your queues |
+| `kapto-cli get URL` | Download one link right here, in the terminal, without Kapto running. `--dir` and `--name` as for `add`. Prints the saved file's path |
+
+**For scripts:** add `--json` to any command and it prints one JSON object instead of text, such as
+`{"ok": true, "ids": [12]}` for `add` or `{"ok": true, "downloads": [...]}` for `status`. A failure prints
+`{"ok": false, "error": "..."}` and ends with a non-zero exit code.
+
+### AI assistants (MCP)
+
+Kapto can be controlled by an AI assistant that speaks MCP (the Model Context Protocol), such as Claude Desktop. It
+is off until you turn it on: **Settings → Remote → AI assistants → Let AI assistants control Kapto**. The assistant
+can then list, add, pause, resume and remove downloads and start a queue: nothing more than `kapto-cli` can.
+
+- **Copy setup** puts the entry for your assistant's MCP settings on the clipboard. It runs `kapto-cli mcp`, which
+  finds Kapto's key by itself.
+- Assistants that connect over HTTP use the address and key shown there (`Authorization: Bearer <key>`).
+- Only this computer can connect, and requests from web pages are refused. **New key** makes the old one stop
+  working; switching it off stops it at once.
 
 ---
 

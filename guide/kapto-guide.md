@@ -867,14 +867,14 @@ The sliders icon at the bottom opens the extension's options.
 
 ## 36. The extension's options
 
-![The extension's options: take over browser downloads, what to do when the app isn't running, site rules and filters](images/ext-options.png)
+![The extension's options: take over browser downloads, starting Kapto when it's closed, site rules and filters](images/ext-options.png)
 
 1. **Take over browser downloads**: files you download in the browser are handed to Kapto instead. Off, the
    extension only takes what you ask it to: the toolbar button, the Download button, or right-click.
 2. **Capture normal file downloads**: off, only video and stream downloads are taken over.
-3. **When the desktop app isn't running**: **Let the browser download it (recommended)**, or **Skip it (do
-   nothing)**. **Hide the browser's download bar** keeps the browser's own download bubble from flashing when a
-   download is handed to Kapto.
+3. **Start Kapto when a download needs it and Kapto is closed**: the extension opens Kapto for you, so a download
+   never waits for you to open it. **Hide the browser's download bar**, further down, keeps the browser's own
+   download bubble from flashing when a download is handed to Kapto.
 4. **Site rules**: a rule per site, first match wins. **Skip** leaves a site's downloads to the browser (your
    webmail, your bank); **Intercept** always hands them to Kapto. **+ Add site rule** adds one; **✕** removes it.
 5. **Filters**: **Filter by file extension** takes over only the file types you list (or all but them), and

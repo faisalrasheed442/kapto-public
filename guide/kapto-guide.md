@@ -168,7 +168,7 @@ The first time Kapto opens, the list is empty.
 Kapto saves into your **Downloads** folder and sorts finished files into folders by type: Video, Music,
 Documents, Programs and Compressed. You can change that in **Settings → Downloads** (section 28).
 
-Kapto speaks the language your PC is set to, if it is one of the eleven it knows (section 60).
+Kapto speaks the language your PC is set to, if it is one of the thirteen it knows (section 60).
 
 ## 5. A tour of the window
 
@@ -1189,6 +1189,8 @@ commands. `add` starts Kapto if it isn't running; `get` doesn't need Kapto at al
 | `kapto-cli stop ID …` | Stop downloads |
 | `kapto-cli remove ID …` | Remove downloads from the list. `--delete-files` also deletes what they downloaded |
 | `kapto-cli start` | Start a queue: everything waiting or held in it. `--queue NAME` for one of your queues |
+| `kapto-cli wait [ID …]` | Wait until downloads finish (with no ids: every one not finished yet). `--timeout SECONDS` to stop waiting. Ends with 0 when all finished, 1 when some failed or were stopped, 3 when the time ran out, 4 when Kapto isn't running |
+| `kapto-cli probe URL` | Look a link up without adding it: its name, size and type, and for a video every quality with its size |
 | `kapto-cli get URL` | Download one link right here, in the terminal, without Kapto running. `--dir` and `--name` as for `add`. Prints the saved file's path |
 
 **For scripts:** add `--json` to any command and it prints one JSON object instead of text, such as
@@ -1199,7 +1201,8 @@ commands. `add` starts Kapto if it isn't running; `get` doesn't need Kapto at al
 
 Kapto can be controlled by an AI assistant that speaks MCP (the Model Context Protocol), such as Claude Desktop. It
 is off until you turn it on: **Settings → Remote → AI assistants → Let AI assistants control Kapto**. The assistant
-can then list, add, pause, resume and remove downloads and start a queue: nothing more than `kapto-cli` can.
+can then list, add, pause, resume and remove downloads, start a queue, wait for downloads to finish and look a link
+up: nothing more than `kapto-cli` can.
 
 - **Copy setup** puts the entry for your assistant's MCP settings on the clipboard. It runs `kapto-cli mcp`, which
   finds Kapto's key by itself.
@@ -1307,7 +1310,7 @@ On **Settings → Torrents** (section 30), **Use Kapto** makes `.torrent` files 
 
 ## 60. Kapto in your language
 
-Kapto speaks English, Arabic, Persian, Urdu, Hindi, Indonesian, Turkish, Russian, Portuguese, Spanish and Chinese.
+Kapto speaks English, Arabic, Persian, Urdu, Hindi, Indonesian, Turkish, Russian, Portuguese, Spanish, Japanese, and Chinese (Simplified and Traditional).
 
 At first it uses your PC's language, if it is one of these. To choose another, open **Settings → System →
 Language** (section 33), pick it, and click **Save**. The change applies the next time Kapto starts.

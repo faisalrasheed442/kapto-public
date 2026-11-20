@@ -162,8 +162,9 @@ The first time Kapto opens, the list is empty.
 1. The **link bar**. Paste a link here and press **Enter** to start your first download (section 7). It takes a
    file link, a video page, a magnet link, a radio station or a camera address.
 2. The empty list tells you the other way in: drop a link anywhere on the window.
-3. The **status strip** at the bottom says **Waiting for the browser extension** until you add the extension
-   (section 6). Without it Kapto works perfectly well; you just paste links yourself.
+3. The chip at the top right says **Waiting for the extension** until you add the extension (section 6), and
+   **Extension not connected** if the link to it is switched off. Click it to open **Settings → Browser**.
+   Without the extension Kapto works perfectly well; you just paste links yourself.
 
 Kapto saves into your **Downloads** folder and sorts finished files into folders by type: Video, Music,
 Documents, Programs and Compressed. You can change that in **Settings → Downloads** (section 28).
@@ -177,26 +178,29 @@ Kapto speaks the language your PC is set to, if it is one of the thirteen it kno
 1. **The side menu.** **All downloads**, then the list by state: **Downloading**, **Needs you**, **Queued**,
    **Paused** and **Finished**. Below them, **Live and radio** (live recordings, radio and cameras, with a dot
    while one is recording) and **Torrents**, then **Categories** (Video, Music, Documents, Programs, Compressed,
-   Other). The number beside each says how many are in it. Lower down are the speed of the last two minutes, the
-   free space on the disk your downloads go to, and **Settings**.
+   Other), each in its own colour. The number beside each says how many are in it. Lower down are the speed of
+   the last two minutes, the free space on the disk your downloads go to, and **Settings**.
 2. **The link bar.** Paste a link, a magnet link, a video page, a radio station or a camera address here. The
    **Ctrl K** keys at its end are a reminder: **Ctrl+K** finds any action (section 53).
-3. **Download** adds what is in the link bar. Beside it, **⋯** opens the menu shown below.
-4. **The title and the summary.** One line says what is going on: how many are running and how fast, how many
-   need you, and when everything should be done.
+3. **Download** adds what is in the link bar. Beside it, the moon (a sun in dark) switches between light and
+   dark, and **⋯** opens the menu shown below.
+4. **The title and the summary.** Small chips say what is going on: how many are running, how fast, how many
+   need you (in red), and how long until everything is done. At the end of the line, a green chip says the
+   browser extension is connected; click it for **Settings → Browser**.
 5. **Filter by name or link.** Type part of a name or address to show only the downloads that match. Press
    **/** to jump here.
 6. **Pause all** pauses everything that is running. When nothing is running it becomes **Resume all**.
 7. **Each download carries its next step in words**, on its own button: here **Show folder** and **Retry** for
    a download that stopped because the disk is full. Downloads that need you sit together in the red card at
    the top (section 19). **⋯** at the end of a row opens all the actions for that download.
-8. **The status strip**: whether the browser extension is connected, the total download and upload speed, how
-   many downloads there are and how many are running, and Kapto's version. When torrents are tied to one
+8. **The status strip**: the total download and upload speed, how many downloads there are and how many are
+   running, and Kapto's version. When torrents are tied to one
    network (section 63) or the phone page is on (section 51), the strip says so too.
 
-The square at the start of each row says what kind of download it is: a video shows a play button, a live
-recording says **LIVE**, a radio station **FM**, a camera **REC**, a picture gallery **IMG**, and a file shows its
-type (**ZIP**, **MKV**, **ISO**…). A small badge after the name says **LIVE** or **ON AIR** while something is
+The square at the start of each row says what kind of download it is, in its category's colour: a video shows a
+play button, a live recording says **LIVE**, a radio station **FM**, a camera **REC**, a picture gallery **IMG**,
+and a file shows its type (**ZIP**, **MKV**, **ISO**…). Under the bar, a download's line ends with how far it has
+got (**32%**). A small badge after the name says **LIVE** or **ON AIR** while something is
 recording, and shows your tags (section 58).
 
 On a small screen, the side menu folds into a column of icons. Point at an icon to see its name.
@@ -227,7 +231,7 @@ the app does the downloading, so on its own it does nothing.
    - Firefox: [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/downloader-pro-integration/)
 2. With Kapto running, open any web page. The extension finds the app by itself. There is no code or number
    to copy.
-3. Kapto's status strip now says **Browser extension connected**.
+3. The chip at the top right of Kapto's window turns green: **Extension connected**.
 
 What the extension does is in Part 7: a **Download** button on videos (section 34), a toolbar button that
 shows what is on the page and can record what a page's player plays (sections 35 and 47), and, if you want it,
@@ -982,7 +986,7 @@ list to another PC, use **⋯ → Export the list…** and **Import a list…** 
 
 ## 41. If something goes wrong
 
-- **The browser extension says App closed, or Kapto says Waiting for the browser extension.** Make sure Kapto is
+- **The browser extension says App closed, or Kapto says Waiting for the extension.** Make sure Kapto is
   running (look for its icon in the tray). Check that **Settings → Browser → Enable browser-extension bridge** is
   on. Then reload the web page.
 - **A download stays at 0%.** Click **Retry**. If it keeps happening, start it from the browser with the
